@@ -10,19 +10,29 @@ def pytree(directory : Path, hidden : bool):
     d = Path(directory)
     printDirContents(d, show_hidden=hidden)
 
-def printDirContents(d : Path, level=0, show_hidden=False):
-    for node in d.glob("./*"):
-        if not show_hidden:
-            if node.name[0] == '.':
-                continue
+def printDirContents(directory : Path, level=0, show_hidden=False):
+    if show_hidden:
+        children = directory.glob('./*')
+    else:
+        children = directory.glob('./[!.]*')
+    dirs = []
+    files = []
+    for node in children:
+        if node.is_dir():
+            dirs.append(node)
+        if node.is_file():
+            files.append(node)
+    for d in sorted(dirs):
         for _ in range(level):
             print('|   ', end='')
         print('+-- ', end='')
-        if node.is_dir():
-            print(node.name)
-            printDirContents(node, level+1)
-        else:
-            print(node.name)
+        print(d.name)
+        printDirContents(d, level+1)
+    for f in sorted(files):
+        for _ in range(level):
+            print('|   ', end='')
+        print('+-- ', end='')
+        print(f.name)
 
     for _ in range(level):
         print('|   ', end='')
