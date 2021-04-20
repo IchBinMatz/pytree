@@ -13,6 +13,17 @@ prints the current directory with hidden files and folders
 pytree --hidden .
 ```
 
+if your modules are not in path, you can use `pytree` via
+
+``` sh
+python3 -m pytree .
+```
+or on windows:
+
+``` cmd
+py -m pytree .
+```
+
 ## example output
 
 ``` 
