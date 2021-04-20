@@ -15,7 +15,7 @@ pytree --hidden .
 
 ## example output
 
-``` sh
+``` 
 .
 +-- thisFolder.md
 +-- test
