@@ -31,3 +31,14 @@ pytree --hidden .
 +-- LICENSE
 
 ```
+
+## Installation
+
+clone this repository
+and then install with pip
+
+``` sh
+git clone https://github.com/IchBinMatz/pytree
+cd pytree
+pip install .
+```
