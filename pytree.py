@@ -16,11 +16,10 @@ SEPERATOR = "|   "
 )
 def pytree(directory: Path, hidden: bool):
     """ converts the input directory into a readable filetree"""
-    click.echo(directory)
     d = Path(directory)
+
     filetree = ""
     printDirContents(filetree, d, show_hidden=hidden)
-
 
 def printDirContents(output: str, directory: Path, level=0, show_hidden=False):
     """ reads the directory recursivly and prints all the files and subdirectorys"""
@@ -45,12 +44,13 @@ def printDirContents(output: str, directory: Path, level=0, show_hidden=False):
 
     printSeperator(output, level, end='\n')
 
-def printSeperator(output: str, level : int, end=""):
+def printSeperator(level : int, end=""):
+    output = ""
     for _ in range(level):
-        output += SEPERATOR + end
+        print(SEPERATOR, end=end)
 
-def printItem(output: str, name: str):
-    output += ITEM + name
+def printItem(name: str):
+    print(f"{ITEM} {name}")
 
 
 if __name__ == "__main__":
