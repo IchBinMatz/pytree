@@ -1,6 +1,5 @@
 from pathlib import Path
-import click
-
+import click 
 ITEM = "+--"
 SEPERATOR = "|   "
 
@@ -17,11 +16,9 @@ SEPERATOR = "|   "
 def pytree(directory: Path, hidden: bool):
     """ converts the input directory into a readable filetree"""
     d = Path(directory)
+    printDirContents(d, show_hidden=hidden)
 
-    filetree = ""
-    printDirContents(filetree, d, show_hidden=hidden)
-
-def printDirContents(output: str, directory: Path, level=0, show_hidden=False):
+def printDirContents(directory: Path, level=0, show_hidden=False):
     """ reads the directory recursivly and prints all the files and subdirectorys"""
     if show_hidden:
         children = directory.glob("./*")
@@ -35,17 +32,16 @@ def printDirContents(output: str, directory: Path, level=0, show_hidden=False):
         if node.is_file():
             files.append(node)
     for d in sorted(dirs):
-        printSeperator(output, level)
-        printItem(output, d.name)
-        printDirContents(output, d, level + 1)
+        printSeperator(level)
+        printItem(d.name)
+        printDirContents(d, level + 1)
     for f in sorted(files):
-        printSeperator(output, level)
-        printItem(output, f.name)
+        printSeperator(level)
+        printItem(f.name)
 
-    printSeperator(output, level, end='\n')
+    printSeperator(level, end='\n')
 
 def printSeperator(level : int, end=""):
-    output = ""
     for _ in range(level):
         print(SEPERATOR, end=end)
 
